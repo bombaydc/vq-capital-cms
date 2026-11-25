@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "erp_password_history",
+  "info": {
+    "singularName": "erp-password-history",
+    "pluralName": "erp-password-histories",
+    "displayName": "ERP Password History"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "content-manager": { "visible": false },
+    "content-type-builder": { "visible": false }
+  },
+  "attributes": {
+    "userId":       { "type": "integer",  "required": true },
+    "userType":     { "type": "string",   "maxLength": 20, "required": true },
+    "passwordHash": { "type": "text",     "required": true },
+    "changedAt":    { "type": "datetime", "required": true }
+  }
+}

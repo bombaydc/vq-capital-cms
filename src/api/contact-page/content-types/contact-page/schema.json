@@ -1,0 +1,22 @@
+{
+  "kind": "singleType",
+  "collectionName": "contact_pages",
+  "info": {
+    "singularName": "contact-page",
+    "pluralName": "contact-pages",
+    "displayName": "Contact Page",
+    "description": "Contact form settings: validation schema and notification recipients"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "form_schema": {
+      "type": "json"
+    },
+    "emails": {
+      "type": "text"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+'use strict';
+
+/**
+ * contact-page service
+ */
+
+const { factories } = require('@strapi/strapi');
+
+module.exports = factories.createCoreService('api::contact-page.contact-page');

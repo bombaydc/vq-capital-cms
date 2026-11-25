@@ -129,3 +129,12 @@ dist
 build
 .strapi-updater.json
 .strapi-cloud.json
+
+############################
+# Local-only notes and tooling (never commit)
+############################
+
+# Release notes, setup plans, handover docs — see .local-notes/README.md
+.local-notes/
+# Claude Code local config (dev-server launch etc.)
+.claude/

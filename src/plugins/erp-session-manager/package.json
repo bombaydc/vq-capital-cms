@@ -1,0 +1,81 @@
+{
+  "name": "erp-session-manager",
+  "version": "1.0.0",
+  "description": "ERP-grade session security plugin for Strapi 5 CE \u2014 server-side sessions, token revocation, anomaly detection, audit logging, and admin portal",
+  "strapi": {
+    "name": "erp-session-manager",
+    "displayName": "ERP Session Manager",
+    "description": "ERP-grade session security: server-side refresh token store, concurrent session limits, IP/UA anomaly detection, audit logging, HSTS, password policy, and Redis support",
+    "kind": "plugin"
+  },
+  "main": "strapi-server.js",
+  "exports": {
+    "./strapi-admin": {
+      "source": "./admin/src/index.js",
+      "import": "./admin/src/index.js",
+      "require": "./admin/src/index.js",
+      "default": "./admin/src/index.js"
+    },
+    "./strapi-server": {
+      "source": "./strapi-server.js",
+      "require": "./strapi-server.js",
+      "default": "./strapi-server.js"
+    }
+  },
+  "scripts": {
+    "test": "jest --runInBand",
+    "test:coverage": "jest --runInBand --coverage"
+  },
+  "dependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "ajv": "^8.12.0",
+    "ioredis": "^5.3.0",
+    "jsonwebtoken": "^9.0.0",
+    "maxmind": "^4.3.0",
+    "otplib": "12.0.1",
+    "qrcode": "^1.5.4",
+    "svg-captcha": "^1.4.0"
+  },
+  "devDependencies": {
+    "fast-check": "^3.23.2",
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/__tests__/**/*.test.js",
+      "**/*.test.js"
+    ],
+    "collectCoverageFrom": [
+      "server/**/*.js",
+      "!server/**/*.test.js",
+      "!**/node_modules/**"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      [
+        "lcov",
+        {
+          "projectRoot": "../../.."
+        }
+      ],
+      "text-summary"
+    ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/__tests__/"
+    ],
+    "transform": {
+      "^.+\\.ts$": "<rootDir>/__tests__/ts-transform.js"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/__tests__/ts-transform.js"
+    ]
+  }
+}

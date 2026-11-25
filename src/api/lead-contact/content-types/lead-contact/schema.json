@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lead_contacts",
+  "info": {
+    "singularName": "lead-contact",
+    "pluralName": "lead-contacts",
+    "displayName": "lead contact"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "type":{
+      "type": "text"
+    },
+    "name": {
+      "type": "text"
+    },
+    "email": {
+      "type": "text"
+    },
+    "mobile": {
+      "type": "text"
+    },
+    "country_code": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "query_type": {
+      "type": "string"
+    },
+    "message": {
+      "type": "text"
+    },
+    "referer_url": {
+      "type": "text"
+    },
+    "page_url": {
+      "type": "text"
+    },
+    "ipaddress": {
+      "type": "string"
+    },
+    "email_hash": {
+      "type": "string"
+    },
+    "mobile_hash": {
+      "type": "string"
+    }
+  }
+}

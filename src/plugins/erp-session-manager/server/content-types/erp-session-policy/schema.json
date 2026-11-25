@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "erp_session_policy",
+  "info": {
+    "singularName": "erp-session-policy",
+    "pluralName": "erp-session-policies",
+    "displayName": "ERP Session Policy"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "content-manager": { "visible": false },
+    "content-type-builder": { "visible": false }
+  },
+  "attributes": {
+    "maxConcurrentSessions":    { "type": "integer", "default": 2 },
+    "idleTimeoutMinutes":       { "type": "integer", "default": 15 },
+    "absoluteTimeoutHours":     { "type": "integer", "default": 4 },
+    "tokenRotationMinutes":     { "type": "integer", "default": 15 },
+    "stepUpRequiredRoutes":     { "type": "json" },
+    "stepUpValidityMinutes":    { "type": "integer", "default": 5 },
+    "alertNewDevice":           { "type": "boolean", "default": true },
+    "alertAnomaly":             { "type": "boolean", "default": true },
+    "alertAfterFailedAttempts": { "type": "integer", "default": 3 },
+    "businessHoursStart":       { "type": "integer", "default": 9 },
+    "businessHoursEnd":         { "type": "integer", "default": 18 },
+    "activityLoggingEnabled":   { "type": "boolean", "default": true },
+    "activityLogRetentionDays": { "type": "integer", "default": 30 },
+    "sessionRetentionDays":     { "type": "integer", "default": 180 },
+    "blockOnIpChange":          { "type": "boolean", "default": true },
+    "blockOnUaChange":          { "type": "boolean", "default": false },
+    "impossibleTravelEnabled":  { "type": "boolean", "default": false },
+    "maxSpeedKmh":              { "type": "integer", "default": 900 },
+    "updatedByAdminId":         { "type": "integer" }
+  }
+}

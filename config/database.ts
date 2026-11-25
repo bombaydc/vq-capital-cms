@@ -37,7 +37,11 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Database 
     postgres: {
       client: 'postgres',
       connection: {
-        connectionString: env('DATABASE_URL'),
+        // Only a real URL (postgres://…) is used; anything else falls back to
+        // the discrete DATABASE_HOST / PORT / NAME / USERNAME / PASSWORD vars.
+        connectionString: /^postgres(ql)?:\/\//i.test(env('DATABASE_URL', ''))
+          ? env('DATABASE_URL')
+          : undefined,
         host: env('DATABASE_HOST', 'localhost'),
         port: env.int('DATABASE_PORT', 5432),
         database: env('DATABASE_NAME', 'strapi'),

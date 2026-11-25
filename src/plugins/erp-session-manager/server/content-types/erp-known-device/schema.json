@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "erp_known_devices",
+  "info": {
+    "singularName": "erp-known-device",
+    "pluralName": "erp-known-devices",
+    "displayName": "ERP Known Device"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "content-manager": { "visible": false },
+    "content-type-builder": { "visible": false }
+  },
+  "attributes": {
+    "userId":      { "type": "integer", "required": true },
+    "deviceHash":  { "type": "string", "maxLength": 64, "required": true },
+    "userAgent":   { "type": "text", "maxLength": 512 },
+    "firstSeenIp": { "type": "string", "maxLength": 45 },
+    "firstSeenAt": { "type": "datetime", "required": true },
+    "lastSeenAt":  { "type": "datetime", "required": true },
+    "trusted":     { "type": "boolean", "default": false }
+  }
+}

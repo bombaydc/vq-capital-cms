@@ -1,0 +1,6 @@
+{
+  "erp-session-manager.plugin.name": "ERP Session Manager",
+  "erp-session-manager.nav.sessions": "Sessions",
+  "erp-session-manager.nav.audit-logs": "Audit Logs",
+  "erp-session-manager.nav.settings": "Settings"
+}

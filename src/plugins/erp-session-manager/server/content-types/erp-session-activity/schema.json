@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "erp_session_activities",
+  "info": {
+    "singularName": "erp-session-activity",
+    "pluralName": "erp-session-activities",
+    "displayName": "ERP Session Activity"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "content-manager": { "visible": false },
+    "content-type-builder": { "visible": false }
+  },
+  "attributes": {
+    "sessionId":  { "type": "string", "maxLength": 64, "required": true },
+    "userId":     { "type": "integer" },
+    "method":     { "type": "string", "maxLength": 10 },
+    "url":        { "type": "string", "maxLength": 2048 },
+    "statusCode": { "type": "integer" },
+    "loggedAt":   { "type": "datetime", "required": true },
+    "requestBody": { "type": "text" }
+  }
+}

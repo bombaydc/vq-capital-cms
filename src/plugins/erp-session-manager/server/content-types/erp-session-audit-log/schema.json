@@ -1,0 +1,74 @@
+{
+  "kind": "collectionType",
+  "collectionName": "erp_session_audit_logs",
+  "info": {
+    "singularName": "erp-session-audit-log",
+    "pluralName": "erp-session-audit-logs",
+    "displayName": "ERP Session Audit Log"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "content-manager": { "visible": false },
+    "content-type-builder": { "visible": false }
+  },
+  "attributes": {
+    "eventType": {
+      "type": "enumeration",
+      "enum": [
+        "LOGIN_SUCCESS",
+        "LOGIN_FAILURE",
+        "LOGOUT",
+        "TOKEN_REFRESH",
+        "SESSION_EXPIRED",
+        "SESSION_EVICTED",
+        "SESSION_REVOKED",
+        "TOKEN_REUSE_ATTEMPT",
+        "REVOKED_TOKEN_USE",
+        "ANOMALY_IP_CHANGE",
+        "ANOMALY_UA_CHANGE",
+        "ANOMALY_IMPOSSIBLE_TRAVEL",
+        "LOGIN_REJECTED_CONCURRENT_LIMIT",
+        "PASSWORD_CHANGED",
+        "PASSWORD_REJECTED",
+        "PASSWORD_HISTORY_VIOLATION",
+        "STEP_UP_SETUP_COMPLETE",
+        "STEP_UP_SUCCESS",
+        "STEP_UP_FAILURE",
+        "STEP_UP_RATE_LIMITED",
+        "STEP_UP_TOKEN_REUSE",
+        "STEP_UP_IP_MISMATCH"
+      ],
+      "required": true
+    },
+    "userId": {
+      "type": "integer",
+      "required": false
+    },
+    "sessionId": {
+      "type": "string",
+      "maxLength": 64
+    },
+    "ipAddress": {
+      "type": "string",
+      "maxLength": 45
+    },
+    "userAgent": {
+      "type": "text",
+      "maxLength": 512
+    },
+    "outcome": {
+      "type": "enumeration",
+      "enum": ["SUCCESS", "FAILURE"],
+      "required": true
+    },
+    "metadata": {
+      "type": "json"
+    },
+    "timestamp": {
+      "type": "datetime",
+      "required": true
+    }
+  }
+}

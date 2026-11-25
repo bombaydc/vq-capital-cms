@@ -1,20 +1,25 @@
-// import type { Core } from '@strapi/strapi';
+import type { Core } from '@strapi/strapi';
+// JS module (allowJs): JSON snapshot + Meilisearch worker, bucket CORS bootstrap.
+import searchSync from './lifecycle/search-sync';
+// JS module: Public role access for the contact form + default Contact Page schema.
+import publicAccess from './lifecycle/public-access';
 
 export default {
   /**
-   * An asynchronous register function that runs before
-   * your application is initialized.
-   *
-   * This gives you an opportunity to extend code.
+   * Runs before the application is initialised.
+   * Registers the Document Service middleware that hands admin edits to the
+   * search-indexer worker (JSON snapshot in uploads/data → optional Meilisearch).
    */
-  register(/* { strapi }: { strapi: Core.Strapi } */) {},
+  register({ strapi }: { strapi: Core.Strapi }) {
+    searchSync.register({ strapi });
+  },
 
   /**
-   * An asynchronous bootstrap function that runs before
-   * your application gets started.
-   *
-   * This gives you an opportunity to set up your data model,
-   * run jobs, or perform some special logic.
+   * Runs before the server starts listening.
+   * Starts the worker and applies the S3 / GCS bucket CORS policy when a bucket is configured.
    */
-  bootstrap(/* { strapi }: { strapi: Core.Strapi } */) {},
+  async bootstrap({ strapi }: { strapi: Core.Strapi }) {
+    await searchSync.bootstrap({ strapi });
+    await publicAccess.bootstrap({ strapi });
+  },
 };

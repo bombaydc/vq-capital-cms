@@ -1,0 +1,9 @@
+'use strict';
+
+/**
+ * contact-page route
+ */
+
+const { factories } = require('@strapi/strapi');
+
+module.exports = factories.createCoreRouter('api::contact-page.contact-page');

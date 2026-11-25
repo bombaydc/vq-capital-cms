@@ -1,0 +1,10 @@
+{
+  "name": "leads-dashboard",
+  "version": "1.0.0",
+  "strapi": {
+    "name": "leads-dashboard",
+    "displayName": "Leads Dashboard",
+    "description": "Lead statistics dashboard and Excel export for contact leads",
+    "kind": "plugin"
+  }
+}

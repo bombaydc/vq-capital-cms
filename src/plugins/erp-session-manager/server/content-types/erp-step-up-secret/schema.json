@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "erp_step_up_secrets",
+  "info": {
+    "singularName": "erp-step-up-secret",
+    "pluralName": "erp-step-up-secrets",
+    "displayName": "ERP Step-Up Secret"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {
+    "content-manager": { "visible": false },
+    "content-type-builder": { "visible": false }
+  },
+  "attributes": {
+    "userId": {
+      "type": "integer",
+      "required": true,
+      "unique": true
+    },
+    "encryptedSecret": {
+      "type": "text",
+      "required": true,
+      "private": true
+    },
+    "iv": {
+      "type": "string",
+      "required": true,
+      "private": true
+    },
+    "authTag": {
+      "type": "string",
+      "required": true,
+      "private": true
+    },
+    "provisionedAt": {
+      "type": "datetime",
+      "required": true
+    },
+    "confirmedAt": {
+      "type": "datetime"
+    },
+    "lastUsedAt": {
+      "type": "datetime"
+    }
+  }
+}
