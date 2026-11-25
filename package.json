@@ -18,6 +18,7 @@
     "test:erp": "cd src/plugins/erp-session-manager && npx jest --runInBand"
   },
   "dependencies": {
+    "@_sh/strapi-plugin-ckeditor": "^8.0.0",
     "@resvg/resvg-js": "^2.6.2",
     "@strapi/database": "5.63.0",
     "@strapi/plugin-cloud": "5.63.0",

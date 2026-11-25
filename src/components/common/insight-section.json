@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_common_insight_sections",
+  "info": {
+    "displayName": "Insight Section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "cards": {
+      "type": "component",
+      "component": "common.insight-card",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

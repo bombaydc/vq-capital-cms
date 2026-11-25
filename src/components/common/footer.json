@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_common_footers",
+  "info": {
+    "displayName": "Footer",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "message": {
+      "type": "text"
+    },
+    "contact_link": {
+      "type": "component",
+      "component": "common.button",
+      "repeatable": false
+    },
+    "location": {
+      "type": "string"
+    },
+    "menus": {
+      "type": "component",
+      "component": "menu.item",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

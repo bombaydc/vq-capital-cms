@@ -1,0 +1,62 @@
+{
+  "collectionName": "components_common_buttons",
+  "info": {
+    "displayName": "Button",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "buttonText": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "Internal",
+        "External",
+        "Popup",
+        "Download",
+        "Email",
+        "Mobile",
+        "Email-copy"
+      ]
+    },
+    "buttonType": {
+      "type": "enumeration",
+      "enum": [
+        "Primary",
+        "Secondary",
+        "Tertiary"
+      ]
+    },
+    "buttonLink": {
+      "type": "text"
+    },
+    "buttonIcon": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "referral": {
+      "type": "enumeration",
+      "enum": [
+        "nofollow",
+        "noreferrer",
+        "noopener"
+      ]
+    },
+    "media": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

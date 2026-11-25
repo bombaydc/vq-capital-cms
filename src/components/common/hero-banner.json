@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_common_hero_banners",
+  "info": {
+    "displayName": "Hero Banner",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "banners": {
+      "type": "component",
+      "component": "common.banner-item",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_menu_sub_items",
+  "info": {
+    "displayName": "sub-item"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    },
+    "is_external": {
+      "type": "boolean",
+      "default": false
+    },
+    "is_downloadable":{
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "config": {}
+}

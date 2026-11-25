@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_common_dynamic_sections",
+  "info": {
+    "displayName": "Dynamic Section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "leader-list"
+      ]
+    }
+  },
+  "config": {}
+}

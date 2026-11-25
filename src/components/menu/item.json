@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_menu_items",
+  "info": {
+    "displayName": "item"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    },
+    "is_external": {
+      "type": "boolean",
+      "default": false
+    },
+    "is_downloadable":{
+      "type": "boolean",
+      "default": false
+    },
+    "items": {
+      "type": "component",
+      "component": "menu.sub-item",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

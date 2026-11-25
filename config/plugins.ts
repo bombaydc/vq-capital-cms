@@ -92,6 +92,18 @@ function uploadProvider(env: Env) {
 // by ENABLE_EMAIL=ON in src/utility/send-mail.js.
 function emailConfig(env: Env): Core.Config.Plugin {
   if (!env('SMTP_HOST')) return {};
+  // On-demand deps are installed with --no-save, so a plain `npm install`/`npm ci`
+  // removes them. Without this guard Strapi crashes at boot ("provider.init is not
+  // a function"); instead warn and keep the default provider until it is reinstalled.
+  try {
+    require.resolve('@strapi/provider-email-nodemailer');
+  } catch {
+    console.warn(
+      '[email] SMTP_HOST is set but @strapi/provider-email-nodemailer is not installed — ' +
+        'falling back to the default provider. Run `npm run deps:install` to enable SMTP.'
+    );
+    return {};
+  }
   return {
     email: {
       config: {

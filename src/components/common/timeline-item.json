@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_common_timeline_items",
+  "info": {
+    "displayName": "Timeline Item",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "year": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

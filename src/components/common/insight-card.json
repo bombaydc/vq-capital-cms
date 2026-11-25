@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_common_insight_cards",
+  "info": {
+    "displayName": "Insight Card",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "label_value": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "buttons": {
+      "type": "component",
+      "component": "common.button",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_common_main_sections",
+  "info": {
+    "displayName": "Main Section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "button": {
+      "type": "component",
+      "component": "common.button",
+      "repeatable": false
+    },
+    "grid_items": {
+      "type": "component",
+      "component": "common.section-item",
+      "repeatable": true
+    },
+    "list_items": {
+      "type": "component",
+      "component": "common.section-item",
+      "repeatable": true
+    },
+    "stat_items": {
+      "type": "component",
+      "component": "common.stat-item",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}
