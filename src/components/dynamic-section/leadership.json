@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_dynamic_section_leaderships",
+  "info": {
+    "displayName": "Leadership",
+    "icon": "apps"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "leader-list",
+        "leader-grid"
+      ],
+      "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Founders",
+        "Board of Directors",
+        "Lead Management Team"
+      ],
+      "required": true
+    }
+  }
+}

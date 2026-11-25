@@ -1,0 +1,46 @@
+{
+  "kind": "singleType",
+  "collectionName": "leadership_landings",
+  "info": {
+    "singularName": "leadership-landing",
+    "pluralName": "leadership-landings",
+    "displayName": "Leadership Landing"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "pageName": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "pageName",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "label": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "dynamic-section.leadership",
+        "shared.button-link"
+      ]
+    }
+  }
+}

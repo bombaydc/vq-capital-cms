@@ -1,0 +1,24 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_vqs",
+  "info": {
+    "singularName": "about-vq",
+    "pluralName": "about-vqs",
+    "displayName": "About VQ"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "uid",
+      "required": true
+    },
+    "milestones": {
+      "type": "component",
+      "component": "about-vq.milestone",
+      "repeatable": true
+    }
+  }
+}
