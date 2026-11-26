@@ -83,6 +83,22 @@ export interface CommonFooter extends Struct.ComponentSchema {
   };
 }
 
+export interface CommonFormSection extends Struct.ComponentSchema {
+  collectionName: 'components_common_form_sections';
+  info: {
+    description: 'Inline contact/enquiry form section header, fieldset legend, and submit label';
+    displayName: 'Form Section';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    fieldset_legend: Schema.Attribute.String;
+    label: Schema.Attribute.String;
+    name: Schema.Attribute.String;
+    submit_label: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Submit'>;
+  };
+}
+
 export interface CommonHeroBanner extends Struct.ComponentSchema {
   collectionName: 'components_common_hero_banners';
   info: {
@@ -269,6 +285,7 @@ declare module '@strapi/strapi' {
       'common.button': CommonButton;
       'common.dynamic-section': CommonDynamicSection;
       'common.footer': CommonFooter;
+      'common.form-section': CommonFormSection;
       'common.hero-banner': CommonHeroBanner;
       'common.insight-card': CommonInsightCard;
       'common.insight-section': CommonInsightSection;

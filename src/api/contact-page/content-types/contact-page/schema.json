@@ -5,18 +5,40 @@
     "singularName": "contact-page",
     "pluralName": "contact-pages",
     "displayName": "Contact Page",
-    "description": "Contact form settings: validation schema and notification recipients"
+    "description": "Contact page content, SEO, form validation schema, and notification recipients"
   },
   "options": {
-    "draftAndPublish": false
+    "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    },
     "form_schema": {
       "type": "json"
     },
     "emails": {
       "type": "text"
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "common.main-section",
+        "common.form-section",
+        "common.bottom-link"
+      ]
     }
   }
 }

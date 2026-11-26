@@ -1,133 +1,115 @@
 {
-    "name": {
-        "name": "name",
-        "type": "text",
-        "title": "Full Name",
-        "default": null,
-        "position": 1,
-        "required": true,
-        "maxLength": 100,
-        "minLength": 2,
-        "validation": {
-            "pattern": [
-                {
-                    "value": "^[a-zA-Z\\s\\-\\.]+$",
-                    "message": "Name must contain only letters, spaces, hyphens, and periods"
-                }
-            ]
-        },
-        "placeholder": ""
-    },
-    "mobile": {
-        "name": "mobile",
-        "type": "tel",
-        "title": "Phone Number",
-        "default": null,
-        "position": 2,
-        "required": true,
-        "placeholder": "",
-        "defaultCountry": "91",
-        "defaultMobileLength": 10
-    },
-    "countrycode": {
-        "name": "countrycode",
-        "type": "country_select",
-        "title": "Country Code",
-        "default": "+91",
-        "multiple": false,
-        "position": 2,
-        "required": true,
-        "searchable": true,
-        "placeholder": ""
-    },
-    "email": {
-        "name": "email",
-        "type": "email",
-        "title": "Email address",
-        "default": null,
-        "position": 3,
-        "required": true,
-        "placeholder": ""
-    },
-    "type": {
-        "enum": [
-            {
-                "label": "I am",
-                "value": ""
-            },
-            {
-                "label": "Homeowner",
-                "value": "Homeowner"
-            },
-            {
-                "label": "Builder",
-                "value": "Builder"
-            },
-            {
-                "label": "Dealer",
-                "value": "Dealer"
-            },
-            {
-                "label": "Architect",
-                "value": "Architect"
-            },
-            {
-                "label": "Electricians",
-                "value": "Electricians"
-            }
-        ],
-        "name": "type",
-        "type": "select",
-        "regex": "^[A-Za-z\\s&]+$",
-        "title": "Select a type",
-        "default": null,
-        "multiple": false,
-        "position": 5,
-        "required": false,
-        "searchable": true,
-        "otherOption": false,
-        "placeholder": ""
-    },
-    "city": {
-        "enum": [
-            {
-                "label": "Mumbai",
-                "value": "Mumbai"
-            },
-            {
-                "label": "Pune",
-                "value": "Pune"
-            }
-        ],
-        "name": "city",
-        "type": "select",
-        "regex": "^[A-Za-z\\s&]+$",
-        "title": "Select a city",
-        "default": null,
-        "multiple": false,
-        "position": 5,
-        "required": false,
-        "searchable": true,
-        "otherOption": false,
-        "placeholder": ""
-    },
-    "message": {
-        "name": "message",
-        "type": "textarea",
-        "title": "Message",
-        "default": null,
-        "position": 5,
-        "required": false,
-        "maxLength": 2000,
-        "minLength": 10,
-        "placeholder": "",
-        "validation": {
-            "pattern": [
-                {
-                    "value": "^[a-zA-Z0-9\\s\\.\\-\\!\\(\\)\\,\\&\\%]+$",
-                    "message": "Only letters, numbers, spaces, and . - ! ( ) , & % characters are allowed"
-                }
-            ]
+  "name": {
+    "name": "name",
+    "type": "text",
+    "title": "Name",
+    "default": null,
+    "position": 1,
+    "required": true,
+    "maxLength": 100,
+    "minLength": 2,
+    "validation": {
+      "pattern": [
+        {
+          "value": "^[a-zA-Z\\s\\-\\.']+$",
+          "message": "Name must contain only letters, spaces, hyphens, apostrophes and periods"
         }
-    }
-}
+      ]
+    },
+    "placeholder": ""
+  },
+  "countrycode": {
+    "name": "countrycode",
+    "type": "country_select",
+    "title": "Country Code",
+    "default": "+91",
+    "multiple": false,
+    "position": 2,
+    "required": true,
+    "searchable": true,
+    "placeholder": ""
+  },
+  "mobile": {
+    "name": "mobile",
+    "type": "tel",
+    "title": "Mobile Number",
+    "default": null,
+    "position": 3,
+    "required": true,
+    "placeholder": "",
+    "defaultCountry": "91",
+    "defaultMobileLength": 10
+  },
+  "email": {
+    "name": "email",
+    "type": "email",
+    "title": "Email",
+    "default": null,
+    "position": 4,
+    "required": true,
+    "placeholder": ""
+  },
+  "country": {
+    "name": "country",
+    "type": "text",
+    "title": "Country",
+    "default": null,
+    "position": 5,
+    "required": true,
+    "minLength": 2,
+    "maxLength": 100,
+    "placeholder": ""
+  },
+  "nature": {
+    "enum": [
+      {
+        "label": "Investment Banking (M&A, ECM, Private Equity)",
+        "value": "Investment Banking (M&A, ECM, Private Equity)"
+      },
+      {
+        "label": "Wealth Management / Private Wealth",
+        "value": "Wealth Management / Private Wealth"
+      },
+      {
+        "label": "Credit Solutions / Structured Finance",
+        "value": "Credit Solutions / Structured Finance"
+      },
+      {
+        "label": "Asset Management",
+        "value": "Asset Management"
+      },
+      {
+        "label": "Careers & Recruitment",
+        "value": "Careers & Recruitment"
+      },
+      {
+        "label": "Media & Press Inquiries",
+        "value": "Media & Press Inquiries"
+      },
+      {
+        "label": "General Inquiry",
+        "value": "General Inquiry"
+      }
+    ],
+    "name": "nature",
+    "type": "select",
+    "title": "Nature of enquiry",
+    "default": null,
+    "multiple": false,
+    "position": 6,
+    "required": true,
+    "searchable": false,
+    "otherOption": false,
+    "placeholder": "Select primary topic"
+  },
+  "details": {
+    "name": "details",
+    "type": "textarea",
+    "title": "Details",
+    "default": null,
+    "position": 7,
+    "required": true,
+    "maxLength": 2000,
+    "placeholder": ""
+  }
+}

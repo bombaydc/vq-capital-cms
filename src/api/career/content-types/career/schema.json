@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "careers",
+  "info": {
+    "singularName": "career",
+    "pluralName": "careers",
+    "displayName": "Career",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "description": {
+      "type": "text"
+    },
+    "label": {
+      "type": "string"
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "common.main-section",
+        "common.bottom-link"
+      ]
+    }
+  }
+}

@@ -512,30 +512,103 @@ export interface ApiAboutAbout extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiCareerCareer extends Struct.SingleTypeSchema {
+  collectionName: 'careers';
+  info: {
+    description: '';
+    displayName: 'Career';
+    pluralName: 'careers';
+    singularName: 'career';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.DynamicZone<
+      ['common.main-section', 'common.bottom-link']
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    label: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::career.career'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCommonCommon extends Struct.SingleTypeSchema {
+  collectionName: 'commons';
+  info: {
+    displayName: 'common';
+    pluralName: 'commons';
+    singularName: 'common';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    body_script: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    footer_menu: Schema.Attribute.Component<'common.footer', false>;
+    head_script: Schema.Attribute.Text;
+    header_menu: Schema.Attribute.Component<'menu.item', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::common.common'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiContactPageContactPage extends Struct.SingleTypeSchema {
   collectionName: 'contact_pages';
   info: {
-    description: 'Contact form settings: validation schema and notification recipients';
+    description: 'Contact page content, SEO, form validation schema, and notification recipients';
     displayName: 'Contact Page';
     pluralName: 'contact-pages';
     singularName: 'contact-page';
   };
   options: {
-    draftAndPublish: false;
+    draftAndPublish: true;
   };
   attributes: {
+    content: Schema.Attribute.DynamicZone<
+      ['common.main-section', 'common.form-section', 'common.bottom-link']
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
     emails: Schema.Attribute.Text;
     form_schema: Schema.Attribute.JSON;
+    label: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::contact-page.contact-page'
     > &
       Schema.Attribute.Private;
+    name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -587,7 +660,7 @@ export interface ApiLeadContactLeadContact extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    city: Schema.Attribute.String;
+    country: Schema.Attribute.String;
     country_code: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -609,7 +682,6 @@ export interface ApiLeadContactLeadContact extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     query_type: Schema.Attribute.String;
     referer_url: Schema.Attribute.Text;
-    type: Schema.Attribute.Text;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1580,6 +1652,8 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::about.about': ApiAboutAbout;
+      'api::career.career': ApiCareerCareer;
+      'api::common.common': ApiCommonCommon;
       'api::contact-page.contact-page': ApiContactPageContactPage;
       'api::home.home': ApiHomeHome;
       'api::lead-contact.lead-contact': ApiLeadContactLeadContact;

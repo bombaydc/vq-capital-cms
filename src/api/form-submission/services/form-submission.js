@@ -223,8 +223,10 @@ function createPhoneValidator(field) {
         });
       }
       const numString = String(value);
+      const normalizedCountryCode = String(countrycode ?? '').replace(/^\+/, '');
+      const normalizedDefaultCountry = String(field?.defaultCountry ?? '91').replace(/^\+/, '');
       if (
-        countrycode == (field?.defaultCountry ?? 91) &&
+        normalizedCountryCode === normalizedDefaultCountry &&
         numString.length != (field?.defaultMobileLength ?? 10)
       ) {
         return this.createError({
@@ -233,7 +235,7 @@ function createPhoneValidator(field) {
             [field.name]: `Enter a valid ${field?.defaultMobileLength ?? 10}-digit ${(field?.title ?? "phone number").toLowerCase()}.`,
           },
         });
-      } else if (countrycode != (field?.defaultCountry ?? 91)) {
+      } else if (normalizedCountryCode !== normalizedDefaultCountry) {
         return numString.length >= 5 && numString.length <= 15;
       }
       return true;
@@ -879,22 +881,24 @@ module.exports = () => ({
   storeContactForm: async (formData, decrptedFormData, emails = '') => {
     // Store form data in the database
     try {
+      const mobile = decrptedFormData?.mobile ?? decrptedFormData?.number;
+      const queryType = decrptedFormData?.nature ?? decrptedFormData?.query_type ?? null;
+      const details = decrptedFormData?.details ?? decrptedFormData?.message ?? null;
+
       const data = {
         "name": encryptPii(decrptedFormData?.name),
         "email": encryptPii(decrptedFormData?.email),
-        "mobile": encryptPii(decrptedFormData?.mobile),
+        "mobile": encryptPii(mobile),
         "country_code": decrptedFormData?.countrycode ?? null,
-        'city': decrptedFormData?.city ?? null,
-        'type': decrptedFormData?.type ?? null,
-        "query_type": decrptedFormData?.query_type ?? null,
-        "message": decrptedFormData?.message ?? null,
+        "country": decrptedFormData?.country ?? null,
+        "query_type": queryType,
+        "message": details,
         "ipaddress": decrptedFormData?.ipaddress ?? null,
         "referer_url": decrptedFormData?.referer_url ?? null,
         "page_url": decrptedFormData?.page_url ?? null,
-        // "consent": (decrptedFormData?.consent ?? false) === true ? true : false,
       }
       data.email_hash = generateHash(decrptedFormData?.email ?? "");
-      data.mobile_hash = generateHash(decrptedFormData?.mobile ?? "");
+      data.mobile_hash = generateHash(mobile ?? "");
 
       // data.sfdc_submit = "false";
 
@@ -914,16 +918,14 @@ module.exports = () => ({
       if (entry && mappedEmails && mappedEmails.length > 0) {
         // form details email template
         const emailData = {
-          "Lead Type": decrptedFormData.type || '',
           Name: decrptedFormData.name || '',
           Email: decrptedFormData.email || '',
-          Phone: decrptedFormData?.mobile ? (decrptedFormData.countrycode ?? '') + ' ' + (decrptedFormData.mobile ?? '') : '',
-          city: decrptedFormData.city || '',
-          "Query Type": decrptedFormData.query_type || '',
-          Message: decrptedFormData.message || '',
+          Phone: mobile ? (decrptedFormData.countrycode ?? '') + ' ' + (mobile ?? '') : '',
+          Country: decrptedFormData.country || '',
+          "Nature of Enquiry": queryType || '',
+          Details: details || '',
           "Referer URL": decrptedFormData.referer_url || '',
           "Page URL": decrptedFormData.page_url || '',
-          // "Consent": decrptedFormData?.consent ? 'Accepted' : 'Not Accepted',
         };
         // console.log("Contact form email data:", emailData);
         for (const toEmail of mappedEmails) {

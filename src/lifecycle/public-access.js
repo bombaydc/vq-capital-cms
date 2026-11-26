@@ -1,69 +1,134 @@
 'use strict';
 
 /**
- * Bootstrap defaults that every fresh database / environment needs for the
- * public contact form to work. Both steps are idempotent and never undo
- * changes made in the admin panel.
+ * Bootstrap security & defaults for the Contact form.
  *
- * 1. Public role: grants ONLY the two endpoints the frontend form calls
- *      POST /api/csrf-token               (csrf-token.generateToken)
- *      POST /api/contact-form-submission  (form-submission.contactFormSubmission)
- *    Everything else stays closed (Strapi default). Revoking one of these in
- *    Settings → Users & Permissions → Public is respected until the permission
- *    row is re-created, so set PUBLIC_FORM_AUTOGRANT=false to stop re-granting.
+ * 1. Public role: REVOKES public access to `/api/csrf-token` and
+ *    `/api/contact-form-submission` so all form requests require a valid
+ *    Strapi API Bearer Token (`Authorization: Bearer <token>`).
  *
- * 2. Contact Page: seeds a generic form_schema (name, email, country code,
- *    mobile, message) only when the single type has no schema yet. Edit the
- *    JSON in Content Manager → Contact Page to change the VQ field list.
+ * 2. Contact Page: seeds `form_schema` only when the single type has no
+ *    schema yet (safe fallback for fresh databases).
  */
 
-const PUBLIC_ACTIONS = [
+const REVOKED_PUBLIC_ACTIONS = [
   'api::csrf-token.csrf-token.generateToken',
   'api::form-submission.form-submission.contactFormSubmission',
 ];
 
 const DEFAULT_CONTACT_SCHEMA = {
   name: {
-    name: 'name', type: 'text', title: 'Full Name', default: null, position: 1,
-    required: true, minLength: 2, maxLength: 100, placeholder: '',
-    validation: { pattern: [{ value: "^[a-zA-Z\\s\\-\\.']+$", message: 'Name must contain only letters, spaces, hyphens, apostrophes and periods' }] },
-  },
-  email: {
-    name: 'email', type: 'email', title: 'Email address', default: null, position: 2,
-    required: true, placeholder: '',
+    name: 'name',
+    type: 'text',
+    title: 'Name',
+    default: null,
+    position: 1,
+    required: true,
+    minLength: 2,
+    maxLength: 100,
+    placeholder: '',
+    validation: {
+      pattern: [
+        {
+          value: "^[a-zA-Z\\s\\-\\.']+$",
+          message: 'Name must contain only letters, spaces, hyphens, apostrophes and periods',
+        },
+      ],
+    },
   },
   countrycode: {
-    name: 'countrycode', type: 'country_select', title: 'Country Code', default: '+91',
-    position: 3, required: true, multiple: false, searchable: true, placeholder: '',
+    name: 'countrycode',
+    type: 'country_select',
+    title: 'Country Code',
+    default: '+91',
+    position: 2,
+    required: true,
+    multiple: false,
+    searchable: true,
+    placeholder: '',
   },
   mobile: {
-    name: 'mobile', type: 'tel', title: 'Phone Number', default: null, position: 4,
-    required: true, placeholder: '', defaultCountry: '91', defaultMobileLength: 10,
+    name: 'mobile',
+    type: 'tel',
+    title: 'Mobile Number',
+    default: null,
+    position: 3,
+    required: true,
+    placeholder: '',
+    defaultCountry: '91',
+    defaultMobileLength: 10,
   },
-  message: {
-    name: 'message', type: 'textarea', title: 'Message', default: null, position: 5,
-    required: false, maxLength: 1000, placeholder: '',
+  email: {
+    name: 'email',
+    type: 'email',
+    title: 'Email',
+    default: null,
+    position: 4,
+    required: true,
+    placeholder: '',
+  },
+  country: {
+    name: 'country',
+    type: 'text',
+    title: 'Country',
+    default: null,
+    position: 5,
+    required: true,
+    minLength: 2,
+    maxLength: 100,
+    placeholder: '',
+  },
+  nature: {
+    name: 'nature',
+    type: 'select',
+    title: 'Nature of enquiry',
+    default: null,
+    position: 6,
+    required: true,
+    multiple: false,
+    searchable: false,
+    otherOption: false,
+    placeholder: 'Select primary topic',
+    enum: [
+      { label: 'Investment Banking (M&A, ECM, Private Equity)', value: 'Investment Banking (M&A, ECM, Private Equity)' },
+      { label: 'Wealth Management / Private Wealth', value: 'Wealth Management / Private Wealth' },
+      { label: 'Credit Solutions / Structured Finance', value: 'Credit Solutions / Structured Finance' },
+      { label: 'Asset Management', value: 'Asset Management' },
+      { label: 'Careers & Recruitment', value: 'Careers & Recruitment' },
+      { label: 'Media & Press Inquiries', value: 'Media & Press Inquiries' },
+      { label: 'General Inquiry', value: 'General Inquiry' },
+    ],
+  },
+  details: {
+    name: 'details',
+    type: 'textarea',
+    title: 'Details',
+    default: null,
+    position: 7,
+    required: true,
+    maxLength: 2000,
+    placeholder: '',
   },
 };
 
-async function grantPublicFormAccess(strapi) {
-  if (String(process.env.PUBLIC_FORM_AUTOGRANT ?? 'true').toLowerCase() === 'false') return;
-
+async function revokePublicFormAccess(strapi) {
   const role = await strapi.db
     .query('plugin::users-permissions.role')
     .findOne({ where: { type: 'public' } });
   if (!role) return;
 
   const permQuery = strapi.db.query('plugin::users-permissions.permission');
-  const added = [];
-  for (const action of PUBLIC_ACTIONS) {
-    const exists = await permQuery.findOne({ where: { action, role: role.id } });
-    if (!exists) {
-      await permQuery.create({ data: { action, role: role.id } });
-      added.push(action);
+  const removed = [];
+  for (const action of REVOKED_PUBLIC_ACTIONS) {
+    const existing = await permQuery.findMany({ where: { action, role: role.id } });
+    for (const row of existing) {
+      await permQuery.delete({ where: { id: row.id } });
+      removed.push(action);
     }
   }
-  if (added.length) strapi.log.info(`[public-access] Public role granted: ${added.join(', ')}`);
+  if (removed.length) {
+    strapi.log.info(`[public-access] Revoked Public role permissions (Bearer token required): ${removed.join(', ')}`);
+  }
 }
 
 async function seedContactPage(strapi) {
@@ -77,15 +142,15 @@ async function seedContactPage(strapi) {
   } else {
     await strapi.documents(uid).create({ data: { form_schema: DEFAULT_CONTACT_SCHEMA, emails: '' } });
   }
-  strapi.log.info('[public-access] Contact Page form_schema seeded with the default VQ fields.');
+  strapi.log.info('[public-access] Contact Page form_schema seeded with default VQ fields.');
 }
 
 module.exports = {
-  PUBLIC_ACTIONS,
+  REVOKED_PUBLIC_ACTIONS,
   DEFAULT_CONTACT_SCHEMA,
   async bootstrap({ strapi }) {
     try {
-      await grantPublicFormAccess(strapi);
+      await revokePublicFormAccess(strapi);
       await seedContactPage(strapi);
     } catch (err) {
       strapi.log.error(`[public-access] bootstrap failed: ${err.message}`);

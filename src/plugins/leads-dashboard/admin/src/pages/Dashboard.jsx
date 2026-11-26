@@ -54,8 +54,8 @@ const COLLECTIONS = [
     icon: User,
     fileSlug: 'lead-contacts',
     breakdowns: [
-      { key: 'byQueryType', title: 'By Query Type' },
-      { key: 'byLeadType', title: 'By Lead Type' },
+      { key: 'byQueryType', title: 'By Nature of Enquiry' },
+      { key: 'byCountry', title: 'By Country' },
     ],
   },
 ];

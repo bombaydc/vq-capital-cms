@@ -17,7 +17,7 @@ const { sanitizeDeep } = require('../../../middlewares/xss-input-sanitizer');
  */
 
 
-const PII_KEYS = new Set(['email', 'mobile', 'name']);
+const PII_KEYS = new Set(['email', 'mobile', 'number', 'name']);
 // Fallback recipients when the page single type has no `emails` set.
 const DEFAULT_NOTIFY_EMAIL = process.env.FORM_NOTIFY_EMAIL || '';
 
@@ -96,6 +96,9 @@ async function handleFormSubmission(ctx, { singleTypeUid, storeFn, lenientDecryp
     }
 
     const decrptedFormData = decryptPiiFields(formData, lenientDecrypt);
+    if (decrptedFormData.mobile == null && decrptedFormData.number != null) {
+      decrptedFormData.mobile = decrptedFormData.number;
+    }
 
     const singleTypeData = await strapi.service(singleTypeUid).find();
     if (!singleTypeData) {
