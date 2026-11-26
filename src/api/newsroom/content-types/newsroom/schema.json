@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "newsrooms",
+  "info": {
+    "singularName": "newsroom",
+    "pluralName": "newsrooms",
+    "displayName": "newsroom",
+    "description": "News & Events page (/in-the-news)"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "label": {
+      "type": "string"
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "common.dynamic-section",
+        "common.bottom-link"
+      ]
+    }
+  }
+}
