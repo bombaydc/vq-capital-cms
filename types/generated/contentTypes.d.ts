@@ -635,6 +635,7 @@ export interface ApiInsightInsight extends Struct.CollectionTypeSchema {
     category: Schema.Attribute.Enumeration<
       ['Research papers', 'Publications', 'Thought leadership']
     >;
+    content: Schema.Attribute.DynamicZone<['common.bottom-link']>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
