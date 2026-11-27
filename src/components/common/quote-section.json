@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_common_quote_sections",
+  "info": {
+    "displayName": "Quote Section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "quote": {
+      "type": "text"
+    },
+    "author": {
+      "type": "string"
+    },
+    "desktop_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "mobile_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}

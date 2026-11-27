@@ -30,6 +30,10 @@
     "designation": {
       "type": "string"
     },
+    "order": {
+      "type": "integer",
+      "default": 0
+    },
     "description": {
       "type": "customField",
       "customField": "plugin::ckeditor5.CKEditor",

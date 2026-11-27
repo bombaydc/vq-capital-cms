@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "legal_pages",
+  "info": {
+    "singularName": "legal-page",
+    "pluralName": "legal-pages",
+    "displayName": "Legal Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "label": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "note": {
+      "type": "text"
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "common.main-section",
+        "common.rich-text-section",
+        "common.faq-section",
+        "common.bottom-link"
+      ]
+    }
+  }
+}

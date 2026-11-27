@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_common_rich_text_items",
+  "info": {
+    "displayName": "Rich Text Item",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "button": {
+      "type": "component",
+      "component": "common.button",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

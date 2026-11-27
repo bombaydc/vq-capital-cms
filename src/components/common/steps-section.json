@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_common_steps_sections",
+  "info": {
+    "displayName": "Steps Section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "items": {
+      "type": "component",
+      "component": "common.section-item",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

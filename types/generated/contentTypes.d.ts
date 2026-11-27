@@ -649,6 +649,48 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiInvestmentPhilosophyInvestmentPhilosophy
+  extends Struct.SingleTypeSchema {
+  collectionName: 'investment_philosophies';
+  info: {
+    description: '';
+    displayName: 'Investment Philosophy';
+    pluralName: 'investment-philosophies';
+    singularName: 'investment-philosophy';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.DynamicZone<
+      [
+        'common.quote-section',
+        'common.steps-section',
+        'common.rich-text-section',
+        'common.media-section',
+        'common.bottom-link',
+      ]
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    label: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::investment-philosophy.investment-philosophy'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiLeadContactLeadContact extends Struct.CollectionTypeSchema {
   collectionName: 'lead_contacts';
   info: {
@@ -723,6 +765,7 @@ export interface ApiLeaderLeader extends Struct.CollectionTypeSchema {
     > &
       Schema.Attribute.Private;
     name: Schema.Attribute.String;
+    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     profile_image: Schema.Attribute.Media<'images'>;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'shared.seo', false>;
@@ -761,6 +804,48 @@ export interface ApiLeadershipLeadership extends Struct.SingleTypeSchema {
     name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     seo: Schema.Attribute.Component<'shared.seo', false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiLegalPageLegalPage extends Struct.CollectionTypeSchema {
+  collectionName: 'legal_pages';
+  info: {
+    description: '';
+    displayName: 'Legal Page';
+    pluralName: 'legal-pages';
+    singularName: 'legal-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    content: Schema.Attribute.DynamicZone<
+      [
+        'common.main-section',
+        'common.rich-text-section',
+        'common.faq-section',
+        'common.bottom-link',
+      ]
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    label: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::legal-page.legal-page'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    note: Schema.Attribute.Text;
+    publishedAt: Schema.Attribute.DateTime;
+    seo: Schema.Attribute.Component<'shared.seo', false>;
+    slug: Schema.Attribute.UID<'name'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1656,9 +1741,11 @@ declare module '@strapi/strapi' {
       'api::common.common': ApiCommonCommon;
       'api::contact-page.contact-page': ApiContactPageContactPage;
       'api::home.home': ApiHomeHome;
+      'api::investment-philosophy.investment-philosophy': ApiInvestmentPhilosophyInvestmentPhilosophy;
       'api::lead-contact.lead-contact': ApiLeadContactLeadContact;
       'api::leader.leader': ApiLeaderLeader;
       'api::leadership.leadership': ApiLeadershipLeadership;
+      'api::legal-page.legal-page': ApiLegalPageLegalPage;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::erp-session-manager.erp-known-device': PluginErpSessionManagerErpKnownDevice;

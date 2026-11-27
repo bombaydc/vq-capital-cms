@@ -1,0 +1,46 @@
+{
+  "collectionName": "components_common_media_sections",
+  "info": {
+    "displayName": "Media Section",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "desktop_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "mobile_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "items": {
+      "type": "component",
+      "component": "common.section-item",
+      "repeatable": true
+    },
+    "button": {
+      "type": "component",
+      "component": "common.button",
+      "repeatable": false
+    }
+  },
+  "config": {}
+}

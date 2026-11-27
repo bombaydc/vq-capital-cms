@@ -1,0 +1,40 @@
+{
+  "kind": "singleType",
+  "collectionName": "investment_philosophies",
+  "info": {
+    "singularName": "investment-philosophy",
+    "pluralName": "investment-philosophies",
+    "displayName": "Investment Philosophy",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "common.quote-section",
+        "common.steps-section",
+        "common.rich-text-section",
+        "common.media-section",
+        "common.bottom-link"
+      ]
+    }
+  }
+}

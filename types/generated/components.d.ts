@@ -67,6 +67,39 @@ export interface CommonDynamicSection extends Struct.ComponentSchema {
   };
 }
 
+export interface CommonFaq extends Struct.ComponentSchema {
+  collectionName: 'components_common_faqs';
+  info: {
+    description: '';
+    displayName: 'FAQ';
+  };
+  attributes: {
+    answer: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+    button: Schema.Attribute.Component<'common.button', false>;
+    question: Schema.Attribute.String;
+  };
+}
+
+export interface CommonFaqSection extends Struct.ComponentSchema {
+  collectionName: 'components_common_faq_sections';
+  info: {
+    description: '';
+    displayName: 'FAQ Section';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    faqs: Schema.Attribute.Component<'common.faq', true>;
+    label: Schema.Attribute.String;
+    name: Schema.Attribute.String;
+  };
+}
+
 export interface CommonFooter extends Struct.ComponentSchema {
   collectionName: 'components_common_footers';
   info: {
@@ -157,6 +190,78 @@ export interface CommonMainSection extends Struct.ComponentSchema {
   };
 }
 
+export interface CommonMediaSection extends Struct.ComponentSchema {
+  collectionName: 'components_common_media_sections';
+  info: {
+    description: '';
+    displayName: 'Media Section';
+  };
+  attributes: {
+    button: Schema.Attribute.Component<'common.button', false>;
+    description: Schema.Attribute.Text;
+    desktop_image: Schema.Attribute.Media<'images'>;
+    items: Schema.Attribute.Component<'common.section-item', true>;
+    label: Schema.Attribute.String;
+    mobile_image: Schema.Attribute.Media<'images'>;
+    name: Schema.Attribute.String;
+  };
+}
+
+export interface CommonQuoteSection extends Struct.ComponentSchema {
+  collectionName: 'components_common_quote_sections';
+  info: {
+    description: '';
+    displayName: 'Quote Section';
+  };
+  attributes: {
+    author: Schema.Attribute.String;
+    desktop_image: Schema.Attribute.Media<'images'>;
+    mobile_image: Schema.Attribute.Media<'images'>;
+    quote: Schema.Attribute.Text;
+  };
+}
+
+export interface CommonRichTextItem extends Struct.ComponentSchema {
+  collectionName: 'components_common_rich_text_items';
+  info: {
+    description: '';
+    displayName: 'Rich Text Item';
+  };
+  attributes: {
+    button: Schema.Attribute.Component<'common.button', false>;
+    description: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+    name: Schema.Attribute.String;
+  };
+}
+
+export interface CommonRichTextSection extends Struct.ComponentSchema {
+  collectionName: 'components_common_rich_text_sections';
+  info: {
+    description: '';
+    displayName: 'Rich Text Section';
+  };
+  attributes: {
+    button: Schema.Attribute.Component<'common.button', false>;
+    description: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+    grid_items: Schema.Attribute.Component<'common.section-item', true>;
+    label: Schema.Attribute.String;
+    name: Schema.Attribute.String;
+    rich_items: Schema.Attribute.Component<'common.rich-text-item', true>;
+  };
+}
+
 export interface CommonSectionItem extends Struct.ComponentSchema {
   collectionName: 'components_common_section_items';
   info: {
@@ -180,6 +285,20 @@ export interface CommonStatItem extends Struct.ComponentSchema {
     description: Schema.Attribute.Text;
     name: Schema.Attribute.String;
     stat: Schema.Attribute.String;
+  };
+}
+
+export interface CommonStepsSection extends Struct.ComponentSchema {
+  collectionName: 'components_common_steps_sections';
+  info: {
+    description: '';
+    displayName: 'Steps Section';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    items: Schema.Attribute.Component<'common.section-item', true>;
+    label: Schema.Attribute.String;
+    name: Schema.Attribute.String;
   };
 }
 
@@ -284,14 +403,21 @@ declare module '@strapi/strapi' {
       'common.bottom-link': CommonBottomLink;
       'common.button': CommonButton;
       'common.dynamic-section': CommonDynamicSection;
+      'common.faq': CommonFaq;
+      'common.faq-section': CommonFaqSection;
       'common.footer': CommonFooter;
       'common.form-section': CommonFormSection;
       'common.hero-banner': CommonHeroBanner;
       'common.insight-card': CommonInsightCard;
       'common.insight-section': CommonInsightSection;
       'common.main-section': CommonMainSection;
+      'common.media-section': CommonMediaSection;
+      'common.quote-section': CommonQuoteSection;
+      'common.rich-text-item': CommonRichTextItem;
+      'common.rich-text-section': CommonRichTextSection;
       'common.section-item': CommonSectionItem;
       'common.stat-item': CommonStatItem;
+      'common.steps-section': CommonStepsSection;
       'common.timeline-item': CommonTimelineItem;
       'common.timeline-section': CommonTimelineSection;
       'menu.item': MenuItem;
