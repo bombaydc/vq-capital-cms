@@ -26,6 +26,9 @@
         "Events"
       ]
     },
+    "label": {
+      "type": "string"
+    },
     "label_value": {
       "type": "string"
     },
@@ -48,6 +51,30 @@
     "is_featured": {
       "type": "boolean",
       "default": false
+    },
+    "author": {
+      "type": "string"
+    },
+    "body": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "source_button": {
+      "type": "component",
+      "component": "common.button",
+      "repeatable": false
+    },
+    "disclaimer": {
+      "type": "text"
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "common.bottom-link"
+      ]
     },
     "seo": {
       "type": "component",
