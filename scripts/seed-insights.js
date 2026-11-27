@@ -217,9 +217,24 @@ function buildInsightData(insight, imageId) {
         }
       : {}),
     ...(insight.disclaimer ? { disclaimer: insight.disclaimer } : {}),
+    // "Continue" link at the foot of every article page
+    content: [
+      {
+        __component: 'common.bottom-link',
+        name: 'continue',
+        button: {
+          buttonText: 'Insights',
+          type: 'Internal',
+          buttonType: 'Primary',
+          buttonLink: '/insights',
+        },
+      },
+    ],
     seo: {
       metaTitle: `${insight.name} | VQ Capital Partners`,
       metaDescription: insight.description.slice(0, 160),
+      metaRobots: 'noindex, nofollow',
+      metaViewport: 'width=device-width, initial-scale=1',
       ...(imageId ? { metaImage: imageId } : {}),
     },
   };

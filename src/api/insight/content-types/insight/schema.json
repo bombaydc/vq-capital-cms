@@ -71,6 +71,12 @@
     "disclaimer": {
       "type": "text"
     },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "common.bottom-link"
+      ]
+    },
     "seo": {
       "type": "component",
       "component": "shared.seo",
