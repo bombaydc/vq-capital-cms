@@ -63,7 +63,9 @@ export interface CommonDynamicSection extends Struct.ComponentSchema {
   };
   attributes: {
     name: Schema.Attribute.String;
-    type: Schema.Attribute.Enumeration<['leader-list']>;
+    type: Schema.Attribute.Enumeration<
+      ['leader-list', 'news-list', 'insight-list']
+    >;
   };
 }
 

@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "insight_pages",
+  "info": {
+    "singularName": "insight-page",
+    "pluralName": "insight-pages",
+    "displayName": "insight page",
+    "description": "Insights listing page (/insights)"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "label": {
+      "type": "string"
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    },
+    "content": {
+      "type": "dynamiczone",
+      "components": [
+        "common.dynamic-section",
+        "common.bottom-link"
+      ]
+    }
+  }
+}

@@ -103,6 +103,82 @@ module.exports = {
     isCollection: true,
     jsonFile: 'leaders.json',
   },
+  newsroom: {
+    apiPath:
+      'api/newsroom?' +
+      [
+        'populate[seo][populate][metaImage][fields][0]=url',
+        'populate[seo][populate][metaImage][fields][1]=alternativeText',
+        'populate[seo][populate][metaSocial][populate][image][fields][0]=url',
+        'populate[seo][populate][metaSocial][populate][image][fields][1]=alternativeText',
+        'populate[content][on][common.dynamic-section][populate]=*',
+        'populate[content][on][common.bottom-link][populate][button][populate][buttonIcon][fields][0]=url',
+        'populate[content][on][common.bottom-link][populate][button][populate][buttonIcon][fields][1]=alternativeText',
+        'populate[content][on][common.bottom-link][populate][button][populate][media][fields][0]=url',
+        'populate[content][on][common.bottom-link][populate][button][populate][media][fields][1]=alternativeText',
+      ].join('&'),
+    isCollection: false,
+    jsonFile: 'newsroom.json',
+  },
+  'news-item': {
+    apiPath:
+      'api/news-items?' +
+      [
+        'sort=createdAt:asc',
+        'populate[buttons][populate][buttonIcon][fields][0]=url',
+        'populate[buttons][populate][buttonIcon][fields][1]=alternativeText',
+        'populate[buttons][populate][media][fields][0]=url',
+        'populate[buttons][populate][media][fields][1]=alternativeText',
+        'populate[image][fields][0]=url',
+        'populate[image][fields][1]=alternativeText',
+        'populate[seo][populate][metaImage][fields][0]=url',
+        'populate[seo][populate][metaImage][fields][1]=alternativeText',
+        'populate[seo][populate][metaSocial][populate][image][fields][0]=url',
+        'populate[seo][populate][metaSocial][populate][image][fields][1]=alternativeText',
+      ].join('&'),
+    isCollection: true,
+    jsonFile: 'news-items.json',
+  },
+  'insight-page': {
+    apiPath:
+      'api/insight-page?' +
+      [
+        'populate[seo][populate][metaImage][fields][0]=url',
+        'populate[seo][populate][metaImage][fields][1]=alternativeText',
+        'populate[seo][populate][metaSocial][populate][image][fields][0]=url',
+        'populate[seo][populate][metaSocial][populate][image][fields][1]=alternativeText',
+        'populate[content][on][common.dynamic-section][populate]=*',
+        'populate[content][on][common.bottom-link][populate][button][populate][buttonIcon][fields][0]=url',
+        'populate[content][on][common.bottom-link][populate][button][populate][buttonIcon][fields][1]=alternativeText',
+        'populate[content][on][common.bottom-link][populate][button][populate][media][fields][0]=url',
+        'populate[content][on][common.bottom-link][populate][button][populate][media][fields][1]=alternativeText',
+      ].join('&'),
+    isCollection: false,
+    jsonFile: 'insight-page.json',
+  },
+  insight: {
+    apiPath:
+      'api/insights?' +
+      [
+        'sort=createdAt:asc',
+        'populate[buttons][populate][buttonIcon][fields][0]=url',
+        'populate[buttons][populate][buttonIcon][fields][1]=alternativeText',
+        'populate[buttons][populate][media][fields][0]=url',
+        'populate[buttons][populate][media][fields][1]=alternativeText',
+        'populate[source_button][populate][buttonIcon][fields][0]=url',
+        'populate[source_button][populate][buttonIcon][fields][1]=alternativeText',
+        'populate[source_button][populate][media][fields][0]=url',
+        'populate[source_button][populate][media][fields][1]=alternativeText',
+        'populate[image][fields][0]=url',
+        'populate[image][fields][1]=alternativeText',
+        'populate[seo][populate][metaImage][fields][0]=url',
+        'populate[seo][populate][metaImage][fields][1]=alternativeText',
+        'populate[seo][populate][metaSocial][populate][image][fields][0]=url',
+        'populate[seo][populate][metaSocial][populate][image][fields][1]=alternativeText',
+      ].join('&'),
+    isCollection: true,
+    jsonFile: 'insights.json',
+  },
   about: {
     apiPath:
       'api/about?' +

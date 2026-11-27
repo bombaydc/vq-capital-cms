@@ -12,7 +12,9 @@
     "type": {
       "type": "enumeration",
       "enum": [
-        "leader-list"
+        "leader-list",
+        "news-list",
+        "insight-list"
       ]
     }
   },
